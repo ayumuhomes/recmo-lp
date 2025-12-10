@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Recmo</title>
+    <meta name="description" content="Recmo Privacy Policy">
+    <link rel="alternate" hreflang="ja" href="privacy.html">
+    <link rel="alternate" hreflang="en" href="privacy-en.html">
+    <style>
+        :root {
+            --primary: #FF4757;
+            --primary-dark: #E8414F;
+            --bg: #ffffff;
+            --bg-secondary: #f5f5f7;
+            --text: #1d1d1f;
+            --text-secondary: #86868b;
+            --border: #d2d2d7;
+            --accent: #FF4757;
+            --warning: #FF9500;
+            --navy: #1C1C2E;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0D0D14;
+                --bg-secondary: #1C1C2E;
+                --text: #f5f5f7;
+                --text-secondary: #a0a0a5;
+                --border: #2C2C3E;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: var(--bg);
+            z-index: 100;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-switch a {
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .lang-switch a:hover {
+            background: var(--bg-secondary);
+        }
+
+        .lang-switch a.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Main Content */
+        main {
+            padding: 60px 0;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin: 48px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h3 {
+            font-size: 18px;
+            margin: 24px 0 12px;
+            color: var(--text);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        td {
+            color: var(--text);
+        }
+
+        /* Code */
+        code {
+            background: var(--bg-secondary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 14px;
+        }
+
+        /* Note */
+        .note {
+            background: rgba(255, 71, 87, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+
+        .note strong {
+            color: var(--text);
+        }
+
+        /* Links */
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        footer .links {
+            margin-bottom: 16px;
+        }
+
+        footer .links a {
+            margin: 0 16px;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 28px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="en.html" class="logo">Recmo</a>
+            <div class="lang-switch">
+                <a href="privacy.html">日本語</a>
+                <a href="privacy-en.html" class="active">English</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Privacy Policy</h1>
+            <p class="last-updated">Last Updated: December 2025</p>
+
+            <p>This Privacy Policy explains how Recmo ("the App") handles your information.</p>
+
+            <h2>1. Information We Collect</h2>
+
+            <h3>Information Processed by the App</h3>
+            <p>The App processes the following information <strong>only on your device</strong>:</p>
+            <ul>
+                <li><strong>Audio Data</strong>: Audio played on your Mac (web meetings, calls, videos, etc.) and microphone input</li>
+                <li><strong>Transcription Data</strong>: Text generated from audio</li>
+                <li><strong>Summary Data</strong>: Summary text generated from transcriptions</li>
+                <li><strong>Memo Data</strong>: Notes entered by the user during recording</li>
+                <li><strong>Settings</strong>: App preferences (output folders, Whisper model selection, etc.)</li>
+            </ul>
+
+            <h3>Information We Do Not Collect</h3>
+            <ul>
+                <li>Personally identifiable information (name, email, etc.)</li>
+                <li>Location data</li>
+                <li>Device identifiers</li>
+                <li>Usage analytics</li>
+            </ul>
+
+            <h2>2. Data Storage</h2>
+
+            <h3>Local Storage</h3>
+            <p>All audio data, transcription data, and summary data are stored <strong>only on your Mac</strong>. Default storage locations are:</p>
+            <ul>
+                <li>Audio files: <code>~/Documents/Recmo/audio/</code></li>
+                <li>Transcripts: <code>~/Documents/Recmo/transcripts/</code></li>
+                <li>Summaries: <code>~/Documents/Recmo/summaries/</code></li>
+            </ul>
+            <p>You can change these locations in the app settings.</p>
+
+            <h3>Cloud Transmission</h3>
+            <p>The App <strong>does not transmit audio recordings (audio files) to any cloud servers</strong>. Recording and transcription are processed entirely on your Mac.</p>
+            <p>However, <strong>when using the summarization feature, transcription text is sent to the OpenAI API</strong>. See "Third-Party Services" below for details.</p>
+
+            <h2>3. Third-Party Services</h2>
+
+            <h3>OpenAI API (Summarization Feature)</h3>
+            <p>When using the summarization feature, <strong>transcription text is sent to the OpenAI API</strong>. This is required to generate summaries.</p>
+            <ul>
+                <li><strong>Data sent</strong>: Transcription text and memos (used for summary generation)</li>
+                <li><strong>Data not sent</strong>: Audio files, filenames, or any other personal information</li>
+                <li><strong>API key management</strong>: You use your own OpenAI API key</li>
+                <li><strong>When data is sent</strong>: When a recording is completed with summarization enabled, or when you manually trigger re-summarization</li>
+            </ul>
+            <p>For OpenAI's privacy practices, please refer to <a href="https://openai.com/privacy/" target="_blank" rel="noopener">OpenAI's Privacy Policy</a>.</p>
+
+            <div class="note">
+                <strong>Important</strong>: The summarization feature is optional. If you do not set up an API key, no transcription text will be sent to the cloud. Recording and transcription work fully offline.
+            </div>
+
+            <h2>4. Required Permissions</h2>
+            <p>The App requires the following system permissions:</p>
+            <table>
+                <tr>
+                    <th>Permission</th>
+                    <th>Purpose</th>
+                </tr>
+                <tr>
+                    <td>Screen Recording</td>
+                    <td>Required to capture system audio (meeting app audio)</td>
+                </tr>
+                <tr>
+                    <td>Microphone</td>
+                    <td>Required to capture microphone audio (your voice)</td>
+                </tr>
+                <tr>
+                    <td>Notifications</td>
+                    <td>Required to notify you of recording/processing completion (optional)</td>
+                </tr>
+            </table>
+            <p>Data obtained through these permissions is used solely to provide the App's functionality and is not transmitted externally (except for the summarization feature).</p>
+
+            <h2>5. Data Deletion</h2>
+
+            <h3>Deleting Recording Data</h3>
+            <p>You can delete individual recordings from the recording history. Deleted data is permanently removed and cannot be recovered.</p>
+
+            <h3>Uninstalling the App</h3>
+            <p>Uninstalling the app does not delete your saved data (audio, transcripts, summary files). To completely remove all data, manually delete the files from your storage folders.</p>
+
+            <h2>6. Third-Party Sharing</h2>
+            <p>The App does not sell, rent, or share your personal information with third parties.</p>
+
+            <h2>7. Security</h2>
+            <p>The App implements the following security measures:</p>
+            <ul>
+                <li>All data is stored locally and managed on your encrypted file system</li>
+                <li>Communication with the OpenAI API is encrypted via HTTPS</li>
+                <li>The app runs in a sandboxed environment with restricted access to only permitted folders</li>
+            </ul>
+
+            <h2>8. Children's Privacy</h2>
+            <p>The App is not intended for children under 13. We do not knowingly collect personal information from children under 13.</p>
+
+            <h2>9. Changes to This Policy</h2>
+            <p>This Privacy Policy may be updated without prior notice. When changes are made, we will update this page and modify the "Last Updated" date.</p>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="links">
+                <a href="en.html">Home</a>
+            </div>
+            <p>&copy; 2025 Recmo. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

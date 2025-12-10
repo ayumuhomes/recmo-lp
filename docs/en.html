@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recmo - From Recording to Remembering.</title>
+    <meta name="description" content="One-tap recording. Local transcription. Auto-saved to your notes. Meeting recording app for macOS.">
+    <link rel="alternate" hreflang="ja" href="index.html">
+    <link rel="alternate" hreflang="en" href="en.html">
+    <style>
+        :root {
+            --primary: #FF4757;
+            --primary-dark: #E8414F;
+            --bg: #ffffff;
+            --bg-secondary: #f5f5f7;
+            --text: #1d1d1f;
+            --text-secondary: #86868b;
+            --border: #d2d2d7;
+            --accent: #FF4757;
+            --warning: #FF9500;
+            --navy: #1C1C2E;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0D0D14;
+                --bg-secondary: #1C1C2E;
+                --text: #f5f5f7;
+                --text-secondary: #a0a0a5;
+                --border: #2C2C3E;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: var(--bg);
+            z-index: 100;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-switch a {
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .lang-switch a:hover {
+            background: var(--bg-secondary);
+        }
+
+        .lang-switch a.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 80px 0 60px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--primary) 0%, #FF6B7A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .app-icon {
+            width: 128px;
+            height: 128px;
+            border-radius: 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(255, 71, 87, 0.3);
+        }
+
+        .hero .tagline {
+            font-size: 28px;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .hero .subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 32px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        section h2 {
+            font-size: 32px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        section h3 {
+            font-size: 24px;
+            margin: 32px 0 16px;
+            color: var(--text);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        /* Pain Points */
+        .pain-points {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 24px 0;
+        }
+
+        .pain-points ul {
+            list-style: none;
+        }
+
+        .pain-points li {
+            padding: 12px 0;
+            padding-left: 32px;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .pain-points li::before {
+            content: "😩";
+            position: absolute;
+            left: 0;
+        }
+
+        .solution {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 24px;
+        }
+
+        /* Features */
+        .feature-card {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 24px 0;
+        }
+
+        .feature-card h3 {
+            margin-top: 0;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        td {
+            color: var(--text);
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 24px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+
+        .code-block pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+
+        /* Workflow */
+        .workflow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin: 24px 0;
+            flex-wrap: wrap;
+        }
+
+        .workflow-step {
+            background: var(--bg-secondary);
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .workflow-arrow {
+            color: var(--primary);
+            font-size: 24px;
+        }
+
+        /* Pricing */
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .pricing-card {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .pricing-card.pro {
+            border: 2px solid var(--primary);
+        }
+
+        .pricing-card h3 {
+            margin-top: 0;
+        }
+
+        .pricing-card .price {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text);
+            margin: 16px 0;
+        }
+
+        .pricing-card .price span {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            text-align: left;
+            margin: 24px 0;
+        }
+
+        .pricing-card li {
+            padding: 8px 0;
+            color: var(--text-secondary);
+        }
+
+        .pricing-card li::before {
+            content: "✓ ";
+            color: var(--primary);
+        }
+
+        /* FAQ */
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 24px 0;
+        }
+
+        .faq-item h4 {
+            color: var(--text);
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .faq-item p {
+            margin-bottom: 0;
+        }
+
+        /* Architecture */
+        .architecture {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .architecture pre {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 12px;
+            text-align: left;
+            overflow-x: auto;
+        }
+
+        /* Architecture Diagram */
+        .arch-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            padding: 32px 16px;
+        }
+
+        .arch-local-box {
+            background: var(--navy);
+            border-radius: 20px;
+            padding: 32px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .arch-local-label {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .arch-local-label::before {
+            content: "💻";
+        }
+
+        .arch-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .arch-step {
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px 24px;
+            text-align: center;
+            min-width: 140px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .arch-step-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .arch-step-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .arch-step-desc {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .arch-arrow {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .arch-arrow-down {
+            color: var(--primary);
+            font-size: 32px;
+        }
+
+        .arch-remote-box {
+            background: linear-gradient(135deg, var(--primary) 0%, #FF6B7A 100%);
+            border-radius: 16px;
+            padding: 20px 32px;
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 4px 20px rgba(255, 71, 87, 0.3);
+        }
+
+        .arch-remote-box .arch-step {
+            background: #fff;
+            box-shadow: none;
+        }
+
+        .arch-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .arch-badge-local {
+            background: rgba(52, 199, 89, 0.2);
+            color: #34C759;
+        }
+
+        .arch-badge-optional {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        .arch-note {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        @media (max-width: 600px) {
+            .arch-flow {
+                flex-direction: column;
+            }
+            .arch-arrow {
+                transform: rotate(90deg);
+            }
+            .arch-step {
+                min-width: 120px;
+            }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer .links {
+            margin-bottom: 16px;
+        }
+
+        footer .links a {
+            margin: 0 16px;
+        }
+
+        /* Highlight */
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .note {
+            background: rgba(255, 71, 87, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+
+        .warning {
+            background: rgba(255, 149, 0, 0.1);
+            border-left: 4px solid var(--warning);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            .hero .tagline {
+                font-size: 20px;
+            }
+            .workflow {
+                flex-direction: column;
+            }
+            .workflow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="en.html" class="logo">Recmo</a>
+            <div class="lang-switch">
+                <a href="index.html">日本語</a>
+                <a href="en.html" class="active">English</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <img src="icon.png" alt="Recmo App Icon" class="app-icon">
+                <h1>Recmo</h1>
+                <p class="tagline">From Recording to Remembering.</p>
+                <p class="subtitle">Record, transcribe, and summarize any audio on your Mac.<br><strong>Audio data stays on your device</strong> for complete privacy.</p>
+                <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 24px 0;">
+                    <span style="background: var(--bg-secondary); padding: 8px 16px; border-radius: 20px; font-size: 14px;">🔒 Audio Stored Locally</span>
+                    <span style="background: var(--bg-secondary); padding: 8px 16px; border-radius: 20px; font-size: 14px;">🎯 Works with Any App</span>
+                    <span style="background: var(--bg-secondary); padding: 8px 16px; border-radius: 20px; font-size: 14px;">✈️ Offline Transcription</span>
+                </div>
+                <a href="https://apps.apple.com/app/id6756238386" class="cta-button">Download on the App Store</a>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Sound familiar?</h2>
+                <div class="pain-points">
+                    <ul>
+                        <li>"What did we decide in that meeting...?" Can't remember afterward</li>
+                        <li>Can't focus on the conversation while taking notes</li>
+                        <li>Made a recording, but no time to listen back</li>
+                        <li>Worried about uploading audio to cloud services</li>
+                        <li>Spending over an hour writing meeting notes every time</li>
+                    </ul>
+                </div>
+                <p class="solution">Recmo solves all of that.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>What Recmo Can Do</h2>
+
+                <div class="feature-card" style="border: 2px solid var(--primary);">
+                    <h3>🎯 What Other Apps Can't Do</h3>
+                    <p style="font-size: 18px; color: var(--text); margin-bottom: 24px;"><strong>Most transcription apps only work with "supported apps." Recmo works with ALL apps.</strong></p>
+                    <table>
+                        <tr>
+                            <th>App</th>
+                            <th>Others</th>
+                            <th>Recmo</th>
+                        </tr>
+                        <tr>
+                            <td>Zoom / Google Meet / Teams</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>LINE / Discord calls</td>
+                            <td style="color: #FF3B30;">❌</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>FaceTime / Slack Huddle</td>
+                            <td style="color: #FF3B30;">❌</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>YouTube / Video courses</td>
+                            <td style="color: #FF3B30;">❌</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>Podcasts / Audio content</td>
+                            <td style="color: #FF3B30;">❌</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>Internal company tools</td>
+                            <td style="color: #FF3B30;">❌</td>
+                            <td>✅</td>
+                        </tr>
+                    </table>
+                    <p class="highlight" style="margin-top: 16px;">No virtual audio devices like BlackHole needed. Zero setup required.</p>
+                </div>
+
+                <div class="feature-card" style="border: 2px solid var(--accent);">
+                    <h3>🔒 Your Audio Stays on Your Mac</h3>
+                    <p style="font-size: 18px; color: var(--text); margin-bottom: 16px;"><strong>Recording and transcription are fully local. Your audio data is never uploaded to the cloud.</strong></p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 12px 0; padding-left: 32px; position: relative; color: var(--text-secondary);">
+                            <span style="position: absolute; left: 0;">✅</span>Safe for confidential meetings
+                        </li>
+                        <li style="padding: 12px 0; padding-left: 32px; position: relative; color: var(--text-secondary);">
+                            <span style="position: absolute; left: 0;">✅</span>Transcribe offline - no internet required
+                        </li>
+                        <li style="padding: 12px 0; padding-left: 32px; position: relative; color: var(--text-secondary);">
+                            <span style="position: absolute; left: 0;">✅</span>Suitable for strict security policies
+                        </li>
+                    </ul>
+                    <div class="note">
+                        <strong>About summarization</strong>: Only when using the summary feature, transcription text is sent to OpenAI API (audio is never sent). Summarization is optional.
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <h3>One-Tap Workflow</h3>
+                    <p>Just press record. Recmo handles the rest.</p>
+                    <div class="workflow">
+                        <div class="workflow-step">Start Recording</div>
+                        <span class="workflow-arrow">→</span>
+                        <div class="workflow-step">Auto Transcription</div>
+                        <span class="workflow-arrow">→</span>
+                        <div class="workflow-step">Auto Summary</div>
+                    </div>
+                    <p>Set up global hotkeys to control Recmo without opening the app:</p>
+                    <ul style="list-style: disc; padding-left: 24px; color: var(--text-secondary); margin-top: 12px;">
+                        <li><strong>Start/Stop Recording</strong> - Control recording with one tap, no interruptions</li>
+                        <li><strong>Open Memo</strong> - Instantly bring up the memo window with a hotkey to jot down important points</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Meeting Notes That Power Your Summary</h3>
+                    <p>Take notes during recording. These notes are used as reference when AI generates the summary.</p>
+                    <ul style="list-style: disc; padding-left: 24px; color: var(--text-secondary);">
+                        <li>Jot down keywords when something feels important</li>
+                        <li>Write your agenda beforehand → Get an organized summary by topic</li>
+                        <li>Mark items with "decision", "TODO", "@John" → Prioritized extraction</li>
+                    </ul>
+                </div>
+
+
+                <div class="feature-card">
+                    <h3>Re-transcribe & Re-summarize Anytime</h3>
+                    <p>Want to try a different Whisper model? Changed your summary prompt? No problem. Re-process anytime from your recording history.</p>
+                    <p class="highlight">As long as you have the audio, you can redo it as many times as you want.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>How It Works</h2>
+                <div class="arch-diagram">
+                    <!-- Local Processing -->
+                    <div class="arch-local-box">
+                        <div class="arch-local-label">Everything stays on your Mac</div>
+                        <div class="arch-flow">
+                            <div class="arch-step">
+                                <div class="arch-step-icon">🎙️</div>
+                                <div class="arch-step-title">Recording</div>
+                                <div class="arch-step-desc">System Audio<br>+ Microphone</div>
+                                <div style="margin-top: 8px;"><span class="arch-badge arch-badge-local">Local</span></div>
+                            </div>
+                            <div class="arch-arrow">→</div>
+                            <div class="arch-step">
+                                <div class="arch-step-icon">📝</div>
+                                <div class="arch-step-title">Transcription</div>
+                                <div class="arch-step-desc">Whisper.cpp<br>(Core ML)</div>
+                                <div style="margin-top: 8px;"><span class="arch-badge arch-badge-local">Local</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="arch-arrow-down">↓</div>
+                    <p class="arch-note">Only text is sent (audio is never uploaded)</p>
+
+                    <!-- Remote Processing -->
+                    <div class="arch-remote-box">
+                        <div class="arch-step">
+                            <div class="arch-step-icon">📋</div>
+                            <div class="arch-step-title">Summary</div>
+                            <div class="arch-step-desc">OpenAI API</div>
+                        </div>
+                        <span class="arch-badge arch-badge-optional">Optional</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Auto-Summary for Clear Action Items</h2>
+                <p style="text-align: center;">When recording ends, AI automatically generates a summary. What was decided. Who does what. Crystal clear.</p>
+                <div class="code-block">
+<pre>## Summary
+Final confirmation meeting for the new feature release.
+Discussed design, testing, and schedule.
+
+## Decisions
+- New feature launches next Monday
+- Design finalized with current proposal
+
+## To-Do (with assignees)
+- [ ] Final design review (Owner: Tanaka)
+- [ ] Prepare test environment (Owner: Sato)
+
+## Concerns
+- Server load testing incomplete
+
+## Notes
+- Next meeting: Friday 3pm</pre>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Sync with Obsidian & Your Favorite Note Apps</h2>
+                <p style="text-align: center;">Set your output folders freely. Point to your Obsidian vault or any folder you prefer. Transcripts and summaries are saved automatically.</p>
+                <div class="code-block">
+<pre>Example:
+Audio: ~/Documents/Recmo/audio/
+Transcripts: ~/Obsidian/Meeting Notes/
+Summaries: ~/Obsidian/Meeting Notes/</pre>
+                </div>
+                <p style="text-align: center;" class="highlight">Outputs in Markdown, ready to use as-is.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Requirements</h2>
+                <table>
+                    <tr>
+                        <th>Item</th>
+                        <th>Requirement</th>
+                    </tr>
+                    <tr>
+                        <td>OS</td>
+                        <td>macOS 13 Ventura or later</td>
+                    </tr>
+                    <tr>
+                        <td>Supported Apps</td>
+                        <td>Any app that plays audio on your Mac</td>
+                    </tr>
+                    <tr>
+                        <td>Permissions</td>
+                        <td>Screen Recording, Microphone</td>
+                    </tr>
+                    <tr>
+                        <td>Languages</td>
+                        <td>Japanese, English</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Pricing</h2>
+                <div class="pricing-cards">
+                    <div class="pricing-card">
+                        <h3>Free</h3>
+                        <div class="price">Free</div>
+                        <ul>
+                            <li>Recording limit: Up to 5 minutes per session</li>
+                            <li>Recording history: Up to 5 items saved</li>
+                            <li>All basic features available</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card pro">
+                        <h3>Pro</h3>
+                        <div class="price">$4.99<span>/month</span></div>
+                        <ul>
+                            <li>Recording limit: Up to 4 hours per session</li>
+                            <li>Recording history: Unlimited</li>
+                            <li>All features unlimited</li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="text-align: center; color: var(--text-secondary);">To cancel or change your subscription, use the App Store</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>FAQ</h2>
+
+                <div class="faq-item">
+                    <h4>Q. Where is my recording data stored?</h4>
+                    <p>A. Everything is stored locally on your Mac. No cloud uploads, ever.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q. What data is sent when using summarization?</h4>
+                    <p>A. When using the summarization feature, only the transcription text is sent to the OpenAI API. Audio data, filenames, and metadata are never sent.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q. How accurate is the transcription?</h4>
+                    <p>A. We use OpenAI's Whisper model, which provides high accuracy for both English and Japanese. You can adjust model size in settings to balance accuracy and speed.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q. Do I need an API key for summarization?</h4>
+                    <p>A. Yes, the summarization feature requires an OpenAI API key. You can get one from <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">OpenAI's website</a> (requires creating an OpenAI account and setting up pay-as-you-go billing). Transcription runs entirely locally and works without any API key.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q. Which apps are supported?</h4>
+                    <p>A. Any app on your Mac that plays audio. Zoom, Google Meet, Teams, FaceTime, LINE, Discord, YouTube, and more.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q. Will my recordings be deleted if I uninstall the app?</h4>
+                    <p>A. No. Your recordings, transcripts, and summaries are saved in folders you specify, so they remain even after uninstalling the app.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q. Can I record copyrighted content?</h4>
+                    <p>A. This app is intended for recording content you have the right to record. Unauthorized recording or reproduction of copyrighted content (video courses, movies, music, etc.) may violate service terms and copyright laws. Users are solely responsible for ensuring they have the legal right to record any content.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="hero">
+            <div class="container">
+                <h2>Simplify Your Meetings with Recmo.</h2>
+                <p class="subtitle">Focus on the conversation. Let Recmo handle the rest.</p>
+                <a href="https://apps.apple.com/app/id6756238386" class="cta-button">Download on the App Store</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="links">
+                <a href="privacy-en.html">Privacy Policy</a>
+            </div>
+            <p>&copy; 2025 Recmo. All rights reserved.</p>
+            <p style="font-style: italic; margin-top: 8px;">Record + Memo = Recmo</p>
+        </div>
+    </footer>
+</body>
+</html>

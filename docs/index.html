@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recmo - 会議を、記録から記憶へ。</title>
+    <meta name="description" content="ワンタッチで録音。ローカルで文字起こし。あなたのノートに自動保存。macOS用会議録音アプリ。">
+    <link rel="alternate" hreflang="ja" href="index.html">
+    <link rel="alternate" hreflang="en" href="en.html">
+    <style>
+        :root {
+            --primary: #FF4757;
+            --primary-dark: #E8414F;
+            --bg: #ffffff;
+            --bg-secondary: #f5f5f7;
+            --text: #1d1d1f;
+            --text-secondary: #86868b;
+            --border: #d2d2d7;
+            --accent: #FF4757;
+            --warning: #FF9500;
+            --navy: #1C1C2E;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0D0D14;
+                --bg-secondary: #1C1C2E;
+                --text: #f5f5f7;
+                --text-secondary: #a0a0a5;
+                --border: #2C2C3E;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: var(--bg);
+            z-index: 100;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-switch a {
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .lang-switch a:hover {
+            background: var(--bg-secondary);
+        }
+
+        .lang-switch a.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 80px 0 60px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--primary) 0%, #FF6B7A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .app-icon {
+            width: 128px;
+            height: 128px;
+            border-radius: 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(255, 71, 87, 0.3);
+        }
+
+        .hero .tagline {
+            font-size: 28px;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .hero .subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 32px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        section h2 {
+            font-size: 32px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        section h3 {
+            font-size: 24px;
+            margin: 32px 0 16px;
+            color: var(--text);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        /* Pain Points */
+        .pain-points {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 24px 0;
+        }
+
+        .pain-points ul {
+            list-style: none;
+        }
+
+        .pain-points li {
+            padding: 12px 0;
+            padding-left: 32px;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .pain-points li::before {
+            content: "😩";
+            position: absolute;
+            left: 0;
+        }
+
+        .solution {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 24px;
+        }
+
+        /* Features */
+        .feature-card {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 24px 0;
+        }
+
+        .feature-card h3 {
+            margin-top: 0;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        td {
+            color: var(--text);
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 24px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+
+        .code-block pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+
+        /* Workflow */
+        .workflow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin: 24px 0;
+            flex-wrap: wrap;
+        }
+
+        .workflow-step {
+            background: var(--bg-secondary);
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .workflow-arrow {
+            color: var(--primary);
+            font-size: 24px;
+        }
+
+        /* Pricing */
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .pricing-card {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .pricing-card.pro {
+            border: 2px solid var(--primary);
+        }
+
+        .pricing-card h3 {
+            margin-top: 0;
+        }
+
+        .pricing-card .price {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text);
+            margin: 16px 0;
+        }
+
+        .pricing-card .price span {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            text-align: left;
+            margin: 24px 0;
+        }
+
+        .pricing-card li {
+            padding: 8px 0;
+            color: var(--text-secondary);
+        }
+
+        .pricing-card li::before {
+            content: "✓ ";
+            color: var(--primary);
+        }
+
+        /* FAQ */
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 24px 0;
+        }
+
+        .faq-item h4 {
+            color: var(--text);
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .faq-item p {
+            margin-bottom: 0;
+        }
+
+        /* Architecture */
+        .architecture {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .architecture pre {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 12px;
+            text-align: left;
+            overflow-x: auto;
+        }
+
+        /* Architecture Diagram */
+        .arch-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            padding: 32px 16px;
+        }
+
+        .arch-local-box {
+            background: var(--navy);
+            border-radius: 20px;
+            padding: 32px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .arch-local-label {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .arch-local-label::before {
+            content: "💻";
+        }
+
+        .arch-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .arch-step {
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px 24px;
+            text-align: center;
+            min-width: 140px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .arch-step-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .arch-step-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .arch-step-desc {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .arch-arrow {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .arch-arrow-down {
+            color: var(--primary);
+            font-size: 32px;
+        }
+
+        .arch-remote-box {
+            background: linear-gradient(135deg, var(--primary) 0%, #FF6B7A 100%);
+            border-radius: 16px;
+            padding: 20px 32px;
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 4px 20px rgba(255, 71, 87, 0.3);
+        }
+
+        .arch-remote-box .arch-step {
+            background: #fff;
+            box-shadow: none;
+        }
+
+        .arch-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .arch-badge-local {
+            background: rgba(52, 199, 89, 0.2);
+            color: #34C759;
+        }
+
+        .arch-badge-optional {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        .arch-note {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        @media (max-width: 600px) {
+            .arch-flow {
+                flex-direction: column;
+            }
+            .arch-arrow {
+                transform: rotate(90deg);
+            }
+            .arch-step {
+                min-width: 120px;
+            }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer .links {
+            margin-bottom: 16px;
+        }
+
+        footer .links a {
+            margin: 0 16px;
+        }
+
+        /* Highlight */
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .note {
+            background: rgba(255, 71, 87, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+
+        .warning {
+            background: rgba(255, 149, 0, 0.1);
+            border-left: 4px solid var(--warning);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            .hero .tagline {
+                font-size: 20px;
+            }
+            .workflow {
+                flex-direction: column;
+            }
+            .workflow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">Recmo</a>
+            <div class="lang-switch">
+                <a href="index.html" class="active">日本語</a>
+                <a href="en.html">English</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <img src="icon.png" alt="Recmo App Icon" class="app-icon">
+                <h1>Recmo</h1>
+                <p class="tagline">会議を、記録から記憶へ。</p>
+                <p class="subtitle">Macで再生されるすべての音声を録音・文字起こし・要約。<br><strong>音声データはローカル保存</strong>でプライバシーも安心。</p>
+                <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 24px 0;">
+                    <span style="background: var(--bg-secondary); padding: 8px 16px; border-radius: 20px; font-size: 14px;">🔒 音声データはローカル保存</span>
+                    <span style="background: var(--bg-secondary); padding: 8px 16px; border-radius: 20px; font-size: 14px;">🎯 全アプリ対応</span>
+                    <span style="background: var(--bg-secondary); padding: 8px 16px; border-radius: 20px; font-size: 14px;">✈️ オフライン文字起こし</span>
+                </div>
+                <a href="https://apps.apple.com/jp/app/id6756238386" class="cta-button">App Storeでダウンロード</a>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>こんな経験、ありませんか？</h2>
+                <div class="pain-points">
+                    <ul>
+                        <li>「あの会議で何を決めたっけ...？」後から思い出せない</li>
+                        <li>メモを取りながら会話に集中できない</li>
+                        <li>録音はしたけど、聞き返す時間がない</li>
+                        <li>文字起こしサービスに音声をアップロードするのが不安</li>
+                        <li>議事録作成に毎回1時間以上かかっている</li>
+                    </ul>
+                </div>
+                <p class="solution">Recmoなら、すべて解決。</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Recmoでできること</h2>
+
+                <div class="feature-card" style="border: 2px solid var(--primary);">
+                    <h3>🎯 他のアプリにはできないこと</h3>
+                    <p style="font-size: 18px; color: var(--text); margin-bottom: 24px;"><strong>一般的な文字起こしアプリは「対応アプリ」だけ。Recmoは「全アプリ」対応。</strong></p>
+                    <table>
+                        <tr>
+                            <th>アプリ</th>
+                            <th>他サービス</th>
+                            <th>Recmo</th>
+                        </tr>
+                        <tr>
+                            <td>Zoom / Google Meet / Teams</td>
+                            <td>✅</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>LINE通話 / Discord</td>
+                            <td style="color: #FF3B30;">❌</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>FaceTime / Slack Huddle</td>
+                            <td style="color: #FF3B30;">❌</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>YouTube / 動画教材</td>
+                            <td style="color: #FF3B30;">❌</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>Podcast / 音声配信</td>
+                            <td style="color: #FF3B30;">❌</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>社内独自ツール</td>
+                            <td style="color: #FF3B30;">❌</td>
+                            <td>✅</td>
+                        </tr>
+                    </table>
+                    <p class="highlight" style="margin-top: 16px;">BlackHoleなどの仮想オーディオデバイスも不要。設定いらずですぐ使えます。</p>
+                </div>
+
+                <div class="feature-card" style="border: 2px solid var(--accent);">
+                    <h3>🔒 音声データはあなたのMacだけに</h3>
+                    <p style="font-size: 18px; color: var(--text); margin-bottom: 16px;"><strong>録音・文字起こしは完全ローカル処理。音声データがクラウドに送信されることはありません。</strong></p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 12px 0; padding-left: 32px; position: relative; color: var(--text-secondary);">
+                            <span style="position: absolute; left: 0;">✅</span>機密性の高い会議も安心して録音
+                        </li>
+                        <li style="padding: 12px 0; padding-left: 32px; position: relative; color: var(--text-secondary);">
+                            <span style="position: absolute; left: 0;">✅</span>インターネット接続なしでも文字起こし可能
+                        </li>
+                        <li style="padding: 12px 0; padding-left: 32px; position: relative; color: var(--text-secondary);">
+                            <span style="position: absolute; left: 0;">✅</span>セキュリティポリシーの厳しい企業でも利用可能
+                        </li>
+                    </ul>
+                    <div class="note">
+                        <strong>要約機能について</strong>: 要約を利用する場合のみ、文字起こしテキストをOpenAI APIに送信します（音声データは送信されません）。要約機能はオプションです。
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <h3>ワンタッチで完結</h3>
+                    <p>録音ボタンを押すだけ。あとはRecmoにお任せ。</p>
+                    <div class="workflow">
+                        <div class="workflow-step">録音開始</div>
+                        <span class="workflow-arrow">→</span>
+                        <div class="workflow-step">自動で文字起こし</div>
+                        <span class="workflow-arrow">→</span>
+                        <div class="workflow-step">自動で要約生成</div>
+                    </div>
+                    <p>グローバルホットキーを設定すれば、会議中でもアプリを開かずに操作できます：</p>
+                    <ul style="list-style: disc; padding-left: 24px; color: var(--text-secondary); margin-top: 12px;">
+                        <li><strong>録音開始/停止</strong> - 会話を中断せずにワンタッチで録音をコントロール</li>
+                        <li><strong>メモを開く</strong> - いつでもホットキーでメモ画面を呼び出し、気になったポイントを即座に記録</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h3>会議中のメモがそのまま要約に反映</h3>
+                    <p>録音中にメモを残せます。このメモはAIが要約を生成する際の参考情報として使われます。</p>
+                    <ul style="list-style: disc; padding-left: 24px; color: var(--text-secondary);">
+                        <li>「これ重要」と思った瞬間にキーワードだけメモ</li>
+                        <li>事前にアジェンダを書いておく → 議題ごとに整理された要約に</li>
+                        <li>「決定」「TODO」「@田中」などマークしておく → 優先的に抽出</li>
+                    </ul>
+                </div>
+
+
+                <div class="feature-card">
+                    <h3>再文字起こし・再要約にも対応</h3>
+                    <p>「別のWhisperモデルで試したい」「要約のプロンプトを変えたい」そんな時も安心。録音履歴からいつでも再処理できます。</p>
+                    <p class="highlight">録音データさえあれば、何度でもやり直せます。</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>仕組み</h2>
+                <div class="arch-diagram">
+                    <!-- ローカル処理部分 -->
+                    <div class="arch-local-box">
+                        <div class="arch-local-label">あなたのMac内で完結</div>
+                        <div class="arch-flow">
+                            <div class="arch-step">
+                                <div class="arch-step-icon">🎙️</div>
+                                <div class="arch-step-title">録音</div>
+                                <div class="arch-step-desc">システム音声<br>+ マイク</div>
+                                <div style="margin-top: 8px;"><span class="arch-badge arch-badge-local">ローカル</span></div>
+                            </div>
+                            <div class="arch-arrow">→</div>
+                            <div class="arch-step">
+                                <div class="arch-step-icon">📝</div>
+                                <div class="arch-step-title">文字起こし</div>
+                                <div class="arch-step-desc">Whisper.cpp<br>(Core ML)</div>
+                                <div style="margin-top: 8px;"><span class="arch-badge arch-badge-local">ローカル</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 矢印 -->
+                    <div class="arch-arrow-down">↓</div>
+                    <p class="arch-note">テキストのみ送信（音声は送信されません）</p>
+
+                    <!-- リモート処理部分 -->
+                    <div class="arch-remote-box">
+                        <div class="arch-step">
+                            <div class="arch-step-icon">📋</div>
+                            <div class="arch-step-title">要約</div>
+                            <div class="arch-step-desc">OpenAI API</div>
+                        </div>
+                        <span class="arch-badge arch-badge-optional">オプション</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>自動要約でアクションが明確に</h2>
+                <p style="text-align: center;">録音が終わると、AIが自動で要約を生成。何を決めて、誰が何をするか。一目でわかります。</p>
+                <div class="code-block">
+<pre>## 会議概要
+新機能のリリースに向けた最終確認ミーティング。
+デザイン・テスト・スケジュールについて協議。
+
+## 決定事項
+- 新機能のリリースは来週月曜日
+- デザインは現行案で確定
+
+## ToDo（担当者付き）
+- [ ] デザイン最終確認（担当: 田中）
+- [ ] テスト環境の準備（担当: 佐藤）
+
+## 懸念点
+- サーバー負荷の検証が未完了
+
+## 補足メモ
+- 次回MTGは金曜15時</pre>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Obsidian・お気に入りのノートアプリと連携</h2>
+                <p style="text-align: center;">出力先フォルダを自由に設定可能。Obsidianのvaultや、お好みのフォルダを指定すれば、文字起こし・要約が自動的に保存されます。</p>
+                <div class="code-block">
+<pre>例）
+音声: ~/Documents/Recmo/audio/
+文字起こし: ~/Obsidian/Meeting Notes/
+要約: ~/Obsidian/Meeting Notes/</pre>
+                </div>
+                <p style="text-align: center;" class="highlight">Markdownで出力されるので、そのまま活用できます。</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>対応環境</h2>
+                <table>
+                    <tr>
+                        <th>項目</th>
+                        <th>要件</th>
+                    </tr>
+                    <tr>
+                        <td>OS</td>
+                        <td>macOS 13 Ventura 以降</td>
+                    </tr>
+                    <tr>
+                        <td>対応アプリ</td>
+                        <td>Macで音声が再生されるすべてのアプリ</td>
+                    </tr>
+                    <tr>
+                        <td>必要権限</td>
+                        <td>画面収録、マイク</td>
+                    </tr>
+                    <tr>
+                        <td>言語</td>
+                        <td>日本語、英語</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>料金プラン</h2>
+                <div class="pricing-cards">
+                    <div class="pricing-card">
+                        <h3>Free</h3>
+                        <div class="price">無料</div>
+                        <ul>
+                            <li>録音時間: 最大5分/回</li>
+                            <li>録音履歴: 最大5件まで保存</li>
+                            <li>すべての基本機能が利用可能</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card pro">
+                        <h3>Pro</h3>
+                        <div class="price">¥500<span>/月</span></div>
+                        <ul>
+                            <li>録音時間: 最大4時間/回</li>
+                            <li>録音履歴: 無制限に保存</li>
+                            <li>すべての機能が使い放題</li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="text-align: center; color: var(--text-secondary);">サブスクリプションの解約・変更はApp Storeから行えます</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>よくある質問</h2>
+
+                <div class="faq-item">
+                    <h4>Q. 録音データはどこに保存されますか？</h4>
+                    <p>A. すべてあなたのMac上に保存されます。クラウドへのアップロードは一切ありません。</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q. 要約機能を使うと何が送信されますか？</h4>
+                    <p>A. 要約機能を使用する場合、文字起こしテキストのみがOpenAI APIに送信されます。音声データ、ファイル名、メタデータは送信されません。</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q. 文字起こしの精度はどのくらいですか？</h4>
+                    <p>A. OpenAIのWhisperモデルを使用しており、日本語・英語ともに高い精度で文字起こしできます。設定でモデルサイズを変更することで、精度と速度のバランスを調整できます。</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q. 要約機能にはAPIキーが必要ですか？</h4>
+                    <p>A. はい、要約機能を利用するにはOpenAI APIキーが必要です。APIキーは<a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">OpenAIのサイト</a>から取得できます（別途OpenAIアカウントの作成と従量課金の設定が必要です）。文字起こしはローカルで完結するため、APIキーなしでも利用できます。</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q. どのアプリに対応していますか？</h4>
+                    <p>A. Macで音声が再生されるすべてのアプリに対応しています。Zoom、Google Meet、Teams、FaceTime、LINE、Discord、YouTube など。</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q. アプリをアンインストールすると録音データは消えますか？</h4>
+                    <p>A. いいえ、消えません。録音データ・文字起こし・要約はすべて指定したフォルダに保存されているため、アプリを削除しても残ります。</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q. 著作権で保護されたコンテンツを録音してもいいですか？</h4>
+                    <p>A. 本アプリは、ユーザーが録音する権利を有するコンテンツの録音を目的としています。著作権で保護されたコンテンツ（動画教材、映画、音楽等）の無断録音・複製は、各サービスの利用規約および著作権法に違反する可能性があります。ユーザーは、録音するコンテンツに関する全ての法的責任を負うものとします。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="hero">
+            <div class="container">
+                <h2>Recmoで、会議をもっとシンプルに。</h2>
+                <p class="subtitle">会話に集中。記録はRecmoに任せて。</p>
+                <a href="https://apps.apple.com/jp/app/id6756238386" class="cta-button">App Storeでダウンロード</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="links">
+                <a href="privacy.html">プライバシーポリシー</a>
+            </div>
+            <p>&copy; 2025 Recmo. All rights reserved.</p>
+            <p style="font-style: italic; margin-top: 8px;">Record + Memo = Recmo</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プライバシーポリシー - Recmo</title>
+    <meta name="description" content="Recmoのプライバシーポリシー">
+    <link rel="alternate" hreflang="ja" href="privacy.html">
+    <link rel="alternate" hreflang="en" href="privacy-en.html">
+    <style>
+        :root {
+            --primary: #FF4757;
+            --primary-dark: #E8414F;
+            --bg: #ffffff;
+            --bg-secondary: #f5f5f7;
+            --text: #1d1d1f;
+            --text-secondary: #86868b;
+            --border: #d2d2d7;
+            --accent: #FF4757;
+            --warning: #FF9500;
+            --navy: #1C1C2E;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0D0D14;
+                --bg-secondary: #1C1C2E;
+                --text: #f5f5f7;
+                --text-secondary: #a0a0a5;
+                --border: #2C2C3E;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: var(--bg);
+            z-index: 100;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-switch a {
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .lang-switch a:hover {
+            background: var(--bg-secondary);
+        }
+
+        .lang-switch a.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Main Content */
+        main {
+            padding: 60px 0;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin: 48px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h3 {
+            font-size: 18px;
+            margin: 24px 0 12px;
+            color: var(--text);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        td {
+            color: var(--text);
+        }
+
+        /* Code */
+        code {
+            background: var(--bg-secondary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 14px;
+        }
+
+        /* Note */
+        .note {
+            background: rgba(255, 71, 87, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+
+        .note strong {
+            color: var(--text);
+        }
+
+        /* Links */
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        footer .links {
+            margin-bottom: 16px;
+        }
+
+        footer .links a {
+            margin: 0 16px;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 28px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">Recmo</a>
+            <div class="lang-switch">
+                <a href="privacy.html" class="active">日本語</a>
+                <a href="privacy-en.html">English</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>プライバシーポリシー</h1>
+            <p class="last-updated">最終更新日: 2025年12月</p>
+
+            <p>本プライバシーポリシーは、Recmo（以下「本アプリ」）における個人情報の取り扱いについて説明します。</p>
+
+            <h2>1. 収集する情報</h2>
+
+            <h3>本アプリが収集する情報</h3>
+            <p>本アプリは以下の情報を<strong>お使いのデバイス上でのみ</strong>処理します：</p>
+            <ul>
+                <li><strong>音声データ</strong>: Macで再生される音声（Web会議、通話、動画など）およびマイク入力</li>
+                <li><strong>文字起こしデータ</strong>: 音声から生成されたテキスト</li>
+                <li><strong>要約データ</strong>: 文字起こしから生成された要約テキスト</li>
+                <li><strong>メモデータ</strong>: 録音中にユーザーが入力したメモ</li>
+                <li><strong>設定情報</strong>: アプリの設定（保存先フォルダ、Whisperモデルの選択など）</li>
+            </ul>
+
+            <h3>本アプリが収集しない情報</h3>
+            <ul>
+                <li>個人を特定する情報（氏名、メールアドレスなど）</li>
+                <li>位置情報</li>
+                <li>デバイス識別子</li>
+                <li>使用状況の分析データ</li>
+            </ul>
+
+            <h2>2. データの保存場所</h2>
+
+            <h3>ローカルストレージ</h3>
+            <p>すべての音声データ、文字起こしデータ、要約データは<strong>お使いのMac上にのみ保存</strong>されます。デフォルトの保存先は以下の通りです：</p>
+            <ul>
+                <li>音声ファイル: <code>~/Documents/Recmo/audio/</code></li>
+                <li>文字起こし: <code>~/Documents/Recmo/transcripts/</code></li>
+                <li>要約: <code>~/Documents/Recmo/summaries/</code></li>
+            </ul>
+            <p>これらの保存先はアプリの設定から変更できます。</p>
+
+            <h3>クラウドへの送信</h3>
+            <p>本アプリは<strong>録音データ（音声ファイル）をクラウドサーバーに送信しません</strong>。録音と文字起こしはすべてお使いのMac上で完結します。</p>
+            <p>ただし、<strong>要約機能を使用する場合は、文字起こしテキストがOpenAI APIに送信されます</strong>。詳細は下記「外部サービスとの連携」をご確認ください。</p>
+
+            <h2>3. 外部サービスとの連携</h2>
+
+            <h3>OpenAI API（要約機能）</h3>
+            <p>要約機能を使用する場合、<strong>文字起こしテキストがOpenAI APIに送信されます</strong>。これは要約を生成するために必要な処理です。</p>
+            <ul>
+                <li><strong>送信されるデータ</strong>: 文字起こしテキストおよびメモ（要約生成に使用）</li>
+                <li><strong>送信されないデータ</strong>: 音声ファイル、ファイル名、その他の個人情報</li>
+                <li><strong>APIキーの管理</strong>: お客様ご自身のOpenAI APIキーを使用します</li>
+                <li><strong>送信タイミング</strong>: 要約機能が有効な状態で録音が完了した時、または手動で再要約を実行した時</li>
+            </ul>
+            <p>OpenAIのプライバシーポリシーについては、<a href="https://openai.com/privacy/" target="_blank" rel="noopener">OpenAIのプライバシーポリシー</a>をご確認ください。</p>
+
+            <div class="note">
+                <strong>重要</strong>: 要約機能は任意です。APIキーを設定しない場合、文字起こしテキストがクラウドに送信されることはありません。録音と文字起こし機能は完全にオフラインで動作します。
+            </div>
+
+            <h2>4. 必要な権限</h2>
+            <p>本アプリは以下のシステム権限を必要とします：</p>
+            <table>
+                <tr>
+                    <th>権限</th>
+                    <th>用途</th>
+                </tr>
+                <tr>
+                    <td>画面収録</td>
+                    <td>システム音声（会議アプリの音声）を録音するために必要</td>
+                </tr>
+                <tr>
+                    <td>マイク</td>
+                    <td>マイク音声（あなたの声）を録音するために必要</td>
+                </tr>
+                <tr>
+                    <td>通知</td>
+                    <td>録音完了や処理完了を通知するために必要（任意）</td>
+                </tr>
+            </table>
+            <p>これらの権限で取得したデータは、本アプリの機能を提供する目的でのみ使用され、外部に送信されることはありません（要約機能を除く）。</p>
+
+            <h2>5. データの削除</h2>
+
+            <h3>録音データの削除</h3>
+            <p>録音履歴から個別のデータを削除できます。削除されたデータは完全に消去され、復元できません。</p>
+
+            <h3>アプリのアンインストール</h3>
+            <p>アプリをアンインストールしても、保存されたデータ（音声、文字起こし、要約ファイル）は削除されません。完全に削除する場合は、保存先フォルダから手動で削除してください。</p>
+
+            <h2>6. 第三者への提供</h2>
+            <p>本アプリは、お客様の個人情報を第三者に販売、貸与、または共有しません。</p>
+
+            <h2>7. セキュリティ</h2>
+            <p>本アプリは以下のセキュリティ対策を講じています：</p>
+            <ul>
+                <li>すべてのデータはローカルに保存され、暗号化されたファイルシステム上で管理されます</li>
+                <li>OpenAI APIとの通信はHTTPSで暗号化されます</li>
+                <li>アプリはサンドボックス環境で動作し、許可されたフォルダ以外へのアクセスは制限されています</li>
+            </ul>
+
+            <h2>8. 子どものプライバシー</h2>
+            <p>本アプリは13歳未満の子どもを対象としていません。13歳未満の子どもから意図的に個人情報を収集することはありません。</p>
+
+            <h2>9. プライバシーポリシーの変更</h2>
+            <p>本プライバシーポリシーは予告なく変更される場合があります。変更があった場合は、本ページを更新し、最終更新日を変更します。</p>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="links">
+                <a href="index.html">ホーム</a>
+            </div>
+            <p>&copy; 2025 Recmo. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
