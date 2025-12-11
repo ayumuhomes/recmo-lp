@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BNSBJP21RE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-BNSBJP21RE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Use - Recmo</title>
+    <meta name="description" content="Recmo Terms of Use">
+    <link rel="alternate" hreflang="ja" href="terms.html">
+    <link rel="alternate" hreflang="en" href="terms-en.html">
+    <style>
+        :root {
+            --primary: #FF4757;
+            --primary-dark: #E8414F;
+            --bg: #ffffff;
+            --bg-secondary: #f5f5f7;
+            --text: #1d1d1f;
+            --text-secondary: #86868b;
+            --border: #d2d2d7;
+            --accent: #FF4757;
+            --warning: #FF9500;
+            --navy: #1C1C2E;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0D0D14;
+                --bg-secondary: #1C1C2E;
+                --text: #f5f5f7;
+                --text-secondary: #a0a0a5;
+                --border: #2C2C3E;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: var(--bg);
+            z-index: 100;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-switch a {
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .lang-switch a:hover {
+            background: var(--bg-secondary);
+        }
+
+        .lang-switch a.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Main Content */
+        main {
+            padding: 60px 0;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin: 48px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h3 {
+            font-size: 18px;
+            margin: 24px 0 12px;
+            color: var(--text);
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        ul {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        /* Note */
+        .note {
+            background: rgba(255, 71, 87, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+
+        .note strong {
+            color: var(--text);
+        }
+
+        /* Links */
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        footer .links {
+            margin-bottom: 16px;
+        }
+
+        footer .links a {
+            margin: 0 16px;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 28px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="en.html" class="logo">Recmo</a>
+            <div class="lang-switch">
+                <a href="terms.html">日本語</a>
+                <a href="terms-en.html" class="active">English</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Terms of Use</h1>
+            <p class="last-updated">Last Updated: December 2025</p>
+
+            <p>These Terms of Use ("Terms") govern your use of Recmo ("the App"). By downloading, installing, or using the App, you agree to be bound by these Terms.</p>
+
+            <h2>1. Service Overview</h2>
+            <p>The App is a meeting capture application for macOS that provides the following features:</p>
+            <ul>
+                <li>Recording of system audio and microphone audio</li>
+                <li>Speech-to-text transcription (processed locally)</li>
+                <li>Summary generation of recorded content (using external API, optional feature)</li>
+                <li>Recording history management</li>
+            </ul>
+
+            <h2>2. Terms of Use</h2>
+            <h3>Eligible Users</h3>
+            <p>The App is intended for users aged 13 and older. Users under 13 years of age are not permitted to use the App.</p>
+
+            <h3>System Requirements</h3>
+            <p>The App requires a Mac running macOS 13.0 (Ventura) or later.</p>
+
+            <h3>Required Permissions</h3>
+            <p>To use the App's features, you must grant the following system permissions:</p>
+            <ul>
+                <li><strong>Screen Recording</strong>: Required to capture system audio</li>
+                <li><strong>Microphone</strong>: Required to record microphone audio</li>
+                <li><strong>Notifications</strong>: Required to receive notifications for recording completion (optional)</li>
+            </ul>
+
+            <h2>3. Subscription</h2>
+            <h3>Plans</h3>
+            <p>The App offers the following plans:</p>
+            <ul>
+                <li><strong>Free Plan</strong>: Free of charge. Recording limited to 5 minutes maximum, history limited to 5 recordings.</li>
+                <li><strong>Pro Plan</strong>: Monthly subscription. Recording up to 4 hours, unlimited history.</li>
+            </ul>
+
+            <h3>Auto-Renewal</h3>
+            <p>The Pro Plan is an auto-renewable subscription.</p>
+            <ul>
+                <li>Your subscription will automatically renew unless canceled at least 24 hours before the end of the current period.</li>
+                <li>Your Apple ID account will be charged upon renewal.</li>
+                <li>You can manage and cancel your subscription in your Apple ID account settings after purchase.</li>
+            </ul>
+
+            <h3>Free Trial</h3>
+            <p>If a free trial is offered, any unused portion will be forfeited when you purchase a subscription.</p>
+
+            <h2>4. User Responsibilities</h2>
+            <h3>Recording Responsibilities</h3>
+            <p>When using the App to make recordings, you are responsible for:</p>
+            <ul>
+                <li>Obtaining appropriate consent from all participants before recording</li>
+                <li>Complying with all applicable laws and regulations regarding recording</li>
+                <li>Properly managing recorded data and preventing unauthorized disclosure to third parties</li>
+            </ul>
+
+            <div class="note">
+                <strong>Important</strong>: Many countries and regions require consent from participants before recording conversations. Recording without consent may be illegal. You are responsible for complying with applicable laws in your jurisdiction.
+            </div>
+
+            <h3>Prohibited Uses</h3>
+            <p>You may not use the App for:</p>
+            <ul>
+                <li>Any illegal activities</li>
+                <li>Violating the privacy of others</li>
+                <li>Modifying, reverse engineering, or unauthorized access to the App</li>
+                <li>Redistributing or reselling the App</li>
+            </ul>
+
+            <h2>5. Intellectual Property</h2>
+            <p>All intellectual property rights in the App and its content, features, and design belong to us. These Terms do not transfer any intellectual property rights to you.</p>
+            <p>You retain all rights to content you create using the App, including recordings, transcriptions, and summaries.</p>
+
+            <h2>6. Disclaimers</h2>
+            <h3>Service Provision</h3>
+            <p>The App is provided "as is." We make no warranties, express or implied, regarding the completeness, accuracy, reliability, or fitness for a particular purpose of the App.</p>
+
+            <h3>Transcription Accuracy</h3>
+            <p>The App's transcription feature uses speech recognition technology. Transcription accuracy may vary depending on factors such as audio quality, speaker accents, and technical terminology. Always verify important content against the original recording.</p>
+
+            <h3>Data Loss</h3>
+            <p>We are not responsible for data loss caused by:</p>
+            <ul>
+                <li>Hardware failures</li>
+                <li>Software bugs or errors</li>
+                <li>User error</li>
+                <li>Other unforeseen circumstances</li>
+            </ul>
+            <p>We recommend regularly backing up important data.</p>
+
+            <h2>7. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by applicable law, we shall not be liable for any direct, indirect, incidental, special, or consequential damages arising from your use or inability to use the App.</p>
+
+            <h2>8. External Services</h2>
+            <p>The App's summary feature uses the OpenAI API. By using this feature, you also agree to OpenAI's terms of service and privacy policy.</p>
+            <p>For details about external service usage, please see our <a href="privacy-en.html">Privacy Policy</a>.</p>
+
+            <h2>9. Changes to Terms</h2>
+            <p>We reserve the right to modify these Terms at any time. We will notify you of significant changes through the App or on this page. Your continued use of the App after changes constitutes acceptance of the modified Terms.</p>
+
+            <h2>10. Governing Law and Jurisdiction</h2>
+            <p>These Terms shall be governed by and construed in accordance with the laws of Japan. Any disputes arising from these Terms shall be subject to the exclusive jurisdiction of the Tokyo District Court as the court of first instance.</p>
+
+            <h2>11. Contact</h2>
+            <p>If you have any questions about these Terms, please contact us through the App's support feature or our website.</p>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="links">
+                <a href="en.html">Home</a>
+                <a href="privacy-en.html">Privacy Policy</a>
+            </div>
+            <p>&copy; 2025 Recmo. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
