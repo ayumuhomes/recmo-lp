@@ -298,16 +298,45 @@
                 <strong>Important</strong>: The summarization feature is optional. If you do not set up an API key, no transcription text will be sent to the cloud. Recording and transcription work fully offline.
             </div>
 
-            <h2>4. Required Permissions</h2>
-            <p>The App requires the following system permissions:</p>
+            <h2>4. Screen Recording Permission</h2>
+
+            <h3>Why Screen Recording Permission Is Required</h3>
+            <p>The App uses macOS's "Screen Recording" permission to capture <strong>system audio (audio from other applications) only</strong>. This is required to record audio from video conferencing apps such as Zoom, Google Meet, and Microsoft Teams.</p>
+
+            <div class="note">
+                <strong>Important</strong>: Although the App uses the Screen Recording permission, <strong>it does NOT capture or store any visual content (screenshots, video frames, or screen images)</strong>. On macOS, the Screen Recording permission (ScreenCaptureKit) is technically required to access audio streams from other applications. This is an Apple system requirement—even when only capturing audio, this permission is mandatory.
+            </div>
+
+            <h3>Data Collected via Screen Recording</h3>
+            <ul>
+                <li><strong>Data collected</strong>: System audio output from selected applications only (e.g., meeting participants' voices from video conferencing apps)</li>
+                <li><strong>Data NOT collected</strong>: Screenshots, screen images, video frames, or any other visual content</li>
+            </ul>
+
+            <h3>Purpose of Collection</h3>
+            <p>Audio data obtained through the Screen Recording permission is used solely for the following purposes:</p>
+            <ul>
+                <li><strong>Meeting transcription</strong>: Converting audio to text using the on-device Whisper AI model</li>
+                <li><strong>Meeting summarization</strong>: Generating summaries from transcription text (optional feature using OpenAI API)</li>
+                <li><strong>Personal record-keeping</strong>: Allowing users to review and reference their meeting content</li>
+            </ul>
+
+            <h3>Data Sharing</h3>
+            <ul>
+                <li><strong>Audio recordings</strong>: Never shared with third parties. All audio files are stored only on the user's Mac.</li>
+                <li><strong>Transcription</strong>: Never shared with third parties. Transcription processing is performed entirely on-device.</li>
+                <li><strong>Summarization (optional)</strong>: Only when the user enables the summarization feature and provides their own OpenAI API key, the transcription text (not audio) is sent to the OpenAI API.</li>
+            </ul>
+
+            <h3>Data Storage Location</h3>
+            <p>All data obtained via Screen Recording is stored <strong>locally on the user's Mac only</strong>. We do not operate any cloud storage or backend servers, and no data is stored on our servers.</p>
+
+            <h2>5. Other Permissions</h2>
+            <p>In addition to Screen Recording, the App requires the following system permissions:</p>
             <table>
                 <tr>
                     <th>Permission</th>
                     <th>Purpose</th>
-                </tr>
-                <tr>
-                    <td>Screen Recording</td>
-                    <td>Required to capture system audio (meeting app audio)</td>
                 </tr>
                 <tr>
                     <td>Microphone</td>
@@ -320,7 +349,7 @@
             </table>
             <p>Data obtained through these permissions is used solely to provide the App's functionality and is not transmitted externally (except for the summarization feature).</p>
 
-            <h2>5. Data Deletion</h2>
+            <h2>6. Data Deletion</h2>
 
             <h3>Deleting Recording Data</h3>
             <p>You can delete individual recordings from the recording history. Deleted data is permanently removed and cannot be recovered.</p>
@@ -328,10 +357,10 @@
             <h3>Uninstalling the App</h3>
             <p>Uninstalling the app does not delete your saved data (audio, transcripts, summary files). To completely remove all data, manually delete the files from your storage folders.</p>
 
-            <h2>6. Third-Party Sharing</h2>
+            <h2>7. Third-Party Sharing</h2>
             <p>The App does not sell, rent, or share your personal information with third parties.</p>
 
-            <h2>7. Security</h2>
+            <h2>8. Security</h2>
             <p>The App implements the following security measures:</p>
             <ul>
                 <li>All data is stored locally and managed on your encrypted file system</li>
@@ -339,10 +368,10 @@
                 <li>The app runs in a sandboxed environment with restricted access to only permitted folders</li>
             </ul>
 
-            <h2>8. Children's Privacy</h2>
+            <h2>9. Children's Privacy</h2>
             <p>The App is not intended for children under 13. We do not knowingly collect personal information from children under 13.</p>
 
-            <h2>9. Changes to This Policy</h2>
+            <h2>10. Changes to This Policy</h2>
             <p>This Privacy Policy may be updated without prior notice. When changes are made, we will update this page and modify the "Last Updated" date.</p>
 
         </div>
