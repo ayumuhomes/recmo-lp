@@ -11,22 +11,26 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recmo - 会議を、記録から記憶へ。</title>
-    <meta name="description" content="ワンタッチで録音。ローカルで文字起こし。あなたのノートに自動保存。macOS用会議録音アプリ。">
+    <title>Recmo - あなたの Vault に、声を流し込む。</title>
+    <meta name="description" content="Mac で鳴る音すべてを、ローカル文字起こし → AI 要約 → カスタム Markdown で Obsidian Vault に直接配置。録音から知識統合まで、ノータッチ。macOS 用ローカル完結型録音アプリ。">
     <link rel="alternate" hreflang="ja" href="index.html">
     <link rel="alternate" hreflang="en" href="en.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #FF4757;
-            --primary-dark: #E8414F;
+            --primary: #fb4b52;
+            --primary-dark: #e23a41;
             --bg: #ffffff;
-            --bg-secondary: #f5f5f7;
-            --text: #1d1d1f;
-            --text-secondary: #86868b;
-            --border: #d2d2d7;
-            --accent: #FF4757;
+            --bg-secondary: #f4f5f7;
+            --text: #2b313d;
+            --text-secondary: #8b919f;
+            --border: #eef0f3;
+            --accent: #fb4b52;
             --warning: #FF9500;
-            --navy: #1C1C2E;
+            --navy: #1b2436;
+            --page-bg: radial-gradient(circle at 28% -5%, #eef1f5, #dfe3ea 72%);
         }
 
         @media (prefers-color-scheme: dark) {
@@ -36,6 +40,8 @@
                 --text: #f5f5f7;
                 --text-secondary: #a0a0a5;
                 --border: #2C2C3E;
+                --navy: #f5f5f7;
+                --page-bg: #0D0D14;
             }
         }
 
@@ -46,10 +52,16 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             line-height: 1.6;
             color: var(--text);
-            background: var(--bg);
+            background: var(--page-bg) fixed;
+        }
+
+        /* 見出しは丸ゴシックでネイビー（App Store画像のトーンに合わせる） */
+        h1, h2, h3, .hero .tagline {
+            font-family: 'Zen Maru Gothic', 'Noto Sans JP', -apple-system, sans-serif;
+            letter-spacing: .3px;
         }
 
         .container {
@@ -114,7 +126,7 @@
             font-size: 48px;
             font-weight: 700;
             margin-bottom: 16px;
-            background: linear-gradient(135deg, var(--primary) 0%, #FF6B7A 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #ff7a80 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -125,7 +137,7 @@
             height: 128px;
             border-radius: 28px;
             margin-bottom: 24px;
-            box-shadow: 0 8px 32px rgba(255, 71, 87, 0.3);
+            box-shadow: 0 8px 32px rgba(251, 75, 82, 0.3);
         }
 
         .hero .tagline {
@@ -166,6 +178,7 @@
             font-size: 32px;
             margin-bottom: 24px;
             text-align: center;
+            color: var(--navy);
         }
 
         section h3 {
@@ -444,13 +457,13 @@
         }
 
         .arch-remote-box {
-            background: linear-gradient(135deg, var(--primary) 0%, #FF6B7A 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #ff7a80 100%);
             border-radius: 16px;
             padding: 20px 32px;
             display: inline-flex;
             align-items: center;
             gap: 16px;
-            box-shadow: 0 4px 20px rgba(255, 71, 87, 0.3);
+            box-shadow: 0 4px 20px rgba(251, 75, 82, 0.3);
         }
 
         .arch-remote-box .arch-step {
@@ -522,7 +535,7 @@
         }
 
         .note {
-            background: rgba(255, 71, 87, 0.1);
+            background: rgba(251, 75, 82, 0.1);
             border-left: 4px solid var(--primary);
             padding: 16px;
             border-radius: 0 8px 8px 0;
@@ -551,6 +564,26 @@
                 transform: rotate(90deg);
             }
         }
+
+        /* --- product showcase (added) --- */
+        .hero-visual { max-width: 300px; margin: 44px auto 0; }
+        .hero-visual img { width: 100%; height: auto; border-radius: 26px; box-shadow: 0 24px 60px rgba(20, 30, 50, 0.18); }
+        .showcase-section { padding: 56px 0; }
+        .showcase-section > .container { text-align: center; margin-bottom: 8px; }
+        .container-wide { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+        .showcase { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; padding: 44px 0; }
+        .showcase + .showcase { border-top: 1px solid var(--border); }
+        .showcase.reverse .showcase-text { order: 2; }
+        .showcase-kicker { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 3px; color: var(--primary); margin-bottom: 14px; }
+        .showcase-text h3 { font-size: 30px; color: var(--navy); margin: 0 0 14px; line-height: 1.35; }
+        .showcase-text p { font-size: 17px; line-height: 1.85; margin: 0; }
+        .shot-img { width: 100%; height: auto; border-radius: 22px; box-shadow: 0 20px 50px rgba(20, 30, 50, 0.16); display: block; }
+        @media (max-width: 760px) {
+            .showcase { grid-template-columns: 1fr; gap: 24px; padding: 32px 0; }
+            .showcase.reverse .showcase-text { order: 0; }
+            .showcase-text h3 { font-size: 24px; }
+            .hero-visual { max-width: 260px; }
+        }
     </style>
 </head>
 <body>
@@ -569,14 +602,55 @@
             <div class="container">
                 <img src="icon.png" alt="Recmo App Icon" class="app-icon">
                 <h1>Recmo</h1>
-                <p class="tagline">会議を、記録から記憶へ。</p>
-                <p class="subtitle">Macで再生されるすべての音声を録音・文字起こし・要約。<br><strong>音声データはローカル保存</strong>でプライバシーも安心。</p>
+                <p class="tagline">あなたの Vault に、声を流し込む。</p>
+                <p class="subtitle">Mac で鳴る音すべてを、<strong>リアルタイム文字起こし → AI 要約 → カスタム Markdown</strong> で Obsidian Vault に直接配置。<br>録音から知識統合まで、ノータッチ。</p>
                 <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 24px 0;">
-                    <span style="background: var(--bg-secondary); padding: 8px 16px; border-radius: 20px; font-size: 14px;">🔒 音声データはローカル保存</span>
-                    <span style="background: var(--bg-secondary); padding: 8px 16px; border-radius: 20px; font-size: 14px;">🎯 全アプリ対応</span>
-                    <span style="background: var(--bg-secondary); padding: 8px 16px; border-radius: 20px; font-size: 14px;">✈️ オフライン文字起こし</span>
+                    <span style="background: var(--bg-secondary); padding: 8px 16px; border-radius: 20px; font-size: 14px;">📁 Vault に直接配置</span>
+                    <span style="background: var(--bg-secondary); padding: 8px 16px; border-radius: 20px; font-size: 14px;">🤖 AI 読み込み前提</span>
+                    <span style="background: var(--bg-secondary); padding: 8px 16px; border-radius: 20px; font-size: 14px;">🔒 ローカル完結</span>
                 </div>
                 <a href="https://apps.apple.com/jp/app/id6756238386" class="cta-button" target="_blank" rel="noopener noreferrer">App Storeでダウンロード</a>
+                <div class="hero-visual"><img src="images/main-ja.png" alt="Recmo メニューバー画面"></div>
+            </div>
+        </section>
+
+        <section class="showcase-section">
+            <div class="container">
+                <h2>洗練された、シンプルな操作画面</h2>
+            </div>
+            <div class="container-wide">
+                <div class="showcase">
+                    <div class="showcase-text">
+                        <span class="showcase-kicker">LIVE TRANSCRIPT</span>
+                        <h3>話しながら、文字になる。</h3>
+                        <p>マイクとスピーカーを分けて、録音中からリアルタイムに文字起こし。話者ごとに整理されて表示されます。</p>
+                    </div>
+                    <img class="shot-img" src="images/recording-ja.png" alt="Recmo 録音中のリアルタイム文字起こし画面">
+                </div>
+                <div class="showcase reverse">
+                    <div class="showcase-text">
+                        <span class="showcase-kicker">LIBRARY</span>
+                        <h3>録音を、迷わず整理。</h3>
+                        <p>タイトル・タグで管理。文字起こし・要約・再処理に、ワンクリックでアクセスできます。</p>
+                    </div>
+                    <img class="shot-img" src="images/history-ja.png" alt="Recmo 録音履歴画面">
+                </div>
+                <div class="showcase">
+                    <div class="showcase-text">
+                        <span class="showcase-kicker">DETAILS</span>
+                        <h3>タイトルもメモも、あとから自在に。</h3>
+                        <p>タグや Markdown メモを付けて、必要な録音をすぐ見つけられます。メモは要約の参考にも使われます。</p>
+                    </div>
+                    <img class="shot-img" src="images/meta-ja.png" alt="Recmo メタ情報・メモ編集画面">
+                </div>
+                <div class="showcase reverse">
+                    <div class="showcase-text">
+                        <span class="showcase-kicker">SETTINGS</span>
+                        <h3>音質も保存先も、自由自在。</h3>
+                        <p>会議からインタビューまで。録音品質や保存先を、用途に合わせて細かく調整できます。</p>
+                    </div>
+                    <img class="shot-img" src="images/settings-ja.png" alt="Recmo 設定画面">
+                </div>
             </div>
         </section>
 
@@ -668,7 +742,7 @@
                     <div class="workflow">
                         <div class="workflow-step">録音開始</div>
                         <span class="workflow-arrow">→</span>
-                        <div class="workflow-step">自動で文字起こし</div>
+                        <div class="workflow-step">リアルタイム文字起こし</div>
                         <span class="workflow-arrow">→</span>
                         <div class="workflow-step">自動で要約生成</div>
                     </div>
@@ -692,7 +766,7 @@
 
                 <div class="feature-card">
                     <h3>再文字起こし・再要約にも対応</h3>
-                    <p>「別のWhisperモデルで試したい」「要約のプロンプトを変えたい」そんな時も安心。録音履歴からいつでも再処理できます。</p>
+                    <p>「もう一度文字起こししたい」「要約のプロンプトを変えたい」そんな時も安心。録音履歴からいつでも再処理できます。</p>
                     <p class="highlight">録音データさえあれば、何度でもやり直せます。</p>
                 </div>
             </div>
@@ -716,7 +790,7 @@
                             <div class="arch-step">
                                 <div class="arch-step-icon">📝</div>
                                 <div class="arch-step-title">文字起こし</div>
-                                <div class="arch-step-desc">Whisper.cpp<br>(Core ML)</div>
+                                <div class="arch-step-desc">Apple 音声認識<br>(オンデバイス)</div>
                                 <div style="margin-top: 8px;"><span class="arch-badge arch-badge-local">ローカル</span></div>
                             </div>
                         </div>
@@ -767,15 +841,47 @@
 
         <section>
             <div class="container">
-                <h2>Obsidian・お気に入りのノートアプリと連携</h2>
-                <p style="text-align: center;">出力先フォルダを自由に設定可能。Obsidianのvaultや、お好みのフォルダを指定すれば、文字起こし・要約が自動的に保存されます。</p>
-                <div class="code-block">
-<pre>例）
-音声: ~/Documents/Recmo/audio/
-文字起こし: ~/Obsidian/Meeting Notes/
-要約: ~/Obsidian/Meeting Notes/</pre>
+                <h2>Obsidian × AI のために設計された録音アプリ</h2>
+                <p style="text-align: center; max-width: 720px; margin: 0 auto 32px;">Recmoは「録音して終わり」ではありません。<strong>Obsidian Vault に直接配置され、AIがそのまま読み込める形式のMarkdown</strong>を自動生成。録音から知識ベース化まで、ノータッチで完結します。</p>
+
+                <div class="pricing-cards" style="margin: 32px 0;">
+                    <div class="pricing-card">
+                        <h3>📁 Vault に直接配置</h3>
+                        <p style="text-align: left; color: var(--text-secondary);">出力先フォルダを完全カスタム。Obsidian の vault、Logseq の journal、任意フォルダに直接保存。ミーティング終了の瞬間、Markdown が然るべき場所に並びます。</p>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>🎨 Markdown 形式を自由設計</h3>
+                        <p style="text-align: left; color: var(--text-secondary);">タグ、フロントマター、見出し構造をテンプレートで自由設計。Daily Note 追記スタイル、Templater 互換、Smart Connections 最適化フォーマット——あなたのワークフローに完全フィット。</p>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>🤖 AI 読み込み前提</h3>
+                        <p style="text-align: left; color: var(--text-secondary);">Claude / NotebookLM / ChatGPT / ローカルLLM に、そのまま流し込める構造化 Markdown。録音ファイル群を AI に渡せば、議事録まとめ・知識統合が<strong>ノータッチで完成</strong>します。</p>
+                    </div>
                 </div>
-                <p style="text-align: center;" class="highlight">Markdownで出力されるので、そのまま活用できます。</p>
+
+                <div class="code-block" style="text-align: center;">
+<pre style="text-align: left; display: inline-block;">🎙  Mac で鳴る音を録音
+    ↓
+📝  オンデバイスでリアルタイム文字起こし
+    ↓
+✨  AI が自動要約・タグ付け
+    ↓
+📁  カスタム Markdown で Vault に配置
+    ↓
+🤖  Claude / NotebookLM / ChatGPT が読み込み
+    ↓
+📚  ノータッチで知識統合完成</pre>
+                </div>
+
+                <p style="text-align: center; margin-top: 32px;">対応エコシステム: <strong>Obsidian / Logseq / Bear / Reflect / Apple Notes / NotebookLM / Claude / ChatGPT / ローカルLLM</strong></p>
+
+                <div class="code-block" style="margin-top: 32px;">
+<pre>例）保存先の設定
+音声:       ~/Documents/Recmo/audio/
+文字起こし: ~/Obsidian/Meeting Notes/
+要約:       ~/Obsidian/Meeting Notes/</pre>
+                </div>
+                <p style="text-align: center;" class="highlight">Markdown で出力されるので、Obsidian でも AI でも、そのまま活用できます。</p>
             </div>
         </section>
 
@@ -789,7 +895,7 @@
                     </tr>
                     <tr>
                         <td>OS</td>
-                        <td>macOS 13 Ventura 以降</td>
+                        <td>macOS 26 以降</td>
                     </tr>
                     <tr>
                         <td>対応アプリ</td>
@@ -822,35 +928,15 @@
                     </div>
                     <div class="pricing-card pro">
                         <h3>Pro 月額</h3>
-                        <div class="price">¥1,200<span>/月</span></div>
+                        <div class="price"><span style="text-decoration: line-through; color: var(--text-secondary); font-size: 0.6em; font-weight: 600; margin-right: 8px;">¥1,200</span>¥500<span>/月</span></div>
                         <ul>
-                            <li>録音時間: 最大4時間/回</li>
-                            <li>録音履歴: 無制限に保存</li>
-                            <li>すべての機能が使い放題</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-card">
-                        <h3>Pro 年額 <small style="font-size: 0.6em; color: var(--text-secondary); font-weight: normal;">近日公開</small></h3>
-                        <div class="price">¥11,800<span>/年</span></div>
-                        <ul>
-                            <li>月額換算 ¥983（約18%お得）</li>
-                            <li>録音時間: 最大4時間/回</li>
-                            <li>録音履歴: 無制限に保存</li>
-                            <li>すべての機能が使い放題</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-card">
-                        <h3>Lifetime <small style="font-size: 0.6em; color: var(--text-secondary); font-weight: normal;">近日公開</small></h3>
-                        <div class="price">¥19,800<span>/買い切り</span></div>
-                        <ul>
-                            <li>1回購入で永続利用</li>
                             <li>録音時間: 最大4時間/回</li>
                             <li>録音履歴: 無制限に保存</li>
                             <li>すべての機能が使い放題</li>
                         </ul>
                     </div>
                 </div>
-                <p style="text-align: center; color: var(--text-secondary);">サブスクリプションの解約・変更はApp Storeから行えます<br>年額プラン・買い切りプランは近日公開予定です</p>
+                <p style="text-align: center; color: var(--text-secondary);">サブスクリプションの解約・変更はApp Storeから行えます</p>
             </div>
         </section>
 
@@ -870,7 +956,7 @@
 
                 <div class="faq-item">
                     <h4>Q. 文字起こしの精度はどのくらいですか？</h4>
-                    <p>A. OpenAIのWhisperモデルを使用しており、日本語・英語ともに高い精度で文字起こしできます。設定でモデルサイズを変更することで、精度と速度のバランスを調整できます。</p>
+                    <p>A. Apple のオンデバイス音声認識を使用し、録音しながらリアルタイムで文字起こしします。マイク（自分）とスピーカー（相手）の音声を話者ごとに分けて表示。完全にMac内で処理されるため、音声が外部に送信されることはありません。</p>
                 </div>
 
                 <div class="faq-item">
@@ -897,8 +983,8 @@
 
         <section class="hero">
             <div class="container">
-                <h2>Recmoで、会議をもっとシンプルに。</h2>
-                <p class="subtitle">会話に集中。記録はRecmoに任せて。</p>
+                <h2>あなたの Vault に、声を流し込む。</h2>
+                <p class="subtitle">会話に集中。文字起こし・要約・Vault 配置は Recmo に任せて。</p>
                 <a href="https://apps.apple.com/jp/app/id6756238386" class="cta-button" target="_blank" rel="noopener noreferrer">App Storeでダウンロード</a>
             </div>
         </section>
@@ -911,7 +997,7 @@
                 <a href="terms.html">利用規約</a>
                 <a href="mailto:support@recmo.me">お問い合わせ</a>
             </div>
-            <p>&copy; 2025 Recmo. All rights reserved.</p>
+            <p>&copy; 2026 Recmo. All rights reserved.</p>
             <p style="font-style: italic; margin-top: 8px;">Record + Memo = Recmo</p>
         </div>
     </footer>
