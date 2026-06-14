@@ -11,22 +11,26 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recmo - From Recording to Remembering.</title>
-    <meta name="description" content="One-tap recording. Local transcription. Auto-saved to your notes. Meeting recording app for macOS.">
+    <title>Recmo - Pour your meetings into your vault.</title>
+    <meta name="description" content="Capture any sound on your Mac. Local transcription, AI summary, custom Markdown — straight into your Obsidian vault. From audio to knowledge base, hands-free. macOS-native, local-first.">
     <link rel="alternate" hreflang="ja" href="index.html">
     <link rel="alternate" hreflang="en" href="en.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #FF4757;
-            --primary-dark: #E8414F;
+            --primary: #fb4b52;
+            --primary-dark: #e23a41;
             --bg: #ffffff;
-            --bg-secondary: #f5f5f7;
-            --text: #1d1d1f;
-            --text-secondary: #86868b;
-            --border: #d2d2d7;
-            --accent: #FF4757;
+            --bg-secondary: #f4f5f7;
+            --text: #2b313d;
+            --text-secondary: #8b919f;
+            --border: #eef0f3;
+            --accent: #fb4b52;
             --warning: #FF9500;
-            --navy: #1C1C2E;
+            --navy: #1b2436;
+            --page-bg: radial-gradient(circle at 28% -5%, #eef1f5, #dfe3ea 72%);
         }
 
         @media (prefers-color-scheme: dark) {
@@ -36,6 +40,8 @@
                 --text: #f5f5f7;
                 --text-secondary: #a0a0a5;
                 --border: #2C2C3E;
+                --navy: #f5f5f7;
+                --page-bg: #0D0D14;
             }
         }
 
@@ -46,10 +52,16 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             line-height: 1.6;
             color: var(--text);
-            background: var(--bg);
+            background: var(--page-bg) fixed;
+        }
+
+        /* Headings use a rounded gothic in navy to match the App Store visuals */
+        h1, h2, h3, .hero .tagline {
+            font-family: 'Zen Maru Gothic', 'Noto Sans JP', -apple-system, sans-serif;
+            letter-spacing: .3px;
         }
 
         .container {
@@ -114,7 +126,7 @@
             font-size: 48px;
             font-weight: 700;
             margin-bottom: 16px;
-            background: linear-gradient(135deg, var(--primary) 0%, #FF6B7A 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #ff7a80 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -125,7 +137,7 @@
             height: 128px;
             border-radius: 28px;
             margin-bottom: 24px;
-            box-shadow: 0 8px 32px rgba(255, 71, 87, 0.3);
+            box-shadow: 0 8px 32px rgba(251, 75, 82, 0.3);
         }
 
         .hero .tagline {
@@ -166,6 +178,7 @@
             font-size: 32px;
             margin-bottom: 24px;
             text-align: center;
+            color: var(--navy);
         }
 
         section h3 {
@@ -444,13 +457,13 @@
         }
 
         .arch-remote-box {
-            background: linear-gradient(135deg, var(--primary) 0%, #FF6B7A 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #ff7a80 100%);
             border-radius: 16px;
             padding: 20px 32px;
             display: inline-flex;
             align-items: center;
             gap: 16px;
-            box-shadow: 0 4px 20px rgba(255, 71, 87, 0.3);
+            box-shadow: 0 4px 20px rgba(251, 75, 82, 0.3);
         }
 
         .arch-remote-box .arch-step {
@@ -522,7 +535,7 @@
         }
 
         .note {
-            background: rgba(255, 71, 87, 0.1);
+            background: rgba(251, 75, 82, 0.1);
             border-left: 4px solid var(--primary);
             padding: 16px;
             border-radius: 0 8px 8px 0;
@@ -551,6 +564,26 @@
                 transform: rotate(90deg);
             }
         }
+
+        /* --- product showcase (added) --- */
+        .hero-visual { max-width: 300px; margin: 44px auto 0; }
+        .hero-visual img { width: 100%; height: auto; border-radius: 26px; box-shadow: 0 24px 60px rgba(20, 30, 50, 0.18); }
+        .showcase-section { padding: 56px 0; }
+        .showcase-section > .container { text-align: center; margin-bottom: 8px; }
+        .container-wide { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+        .showcase { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; padding: 44px 0; }
+        .showcase + .showcase { border-top: 1px solid var(--border); }
+        .showcase.reverse .showcase-text { order: 2; }
+        .showcase-kicker { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 3px; color: var(--primary); margin-bottom: 14px; }
+        .showcase-text h3 { font-size: 30px; color: var(--navy); margin: 0 0 14px; line-height: 1.35; }
+        .showcase-text p { font-size: 17px; line-height: 1.85; margin: 0; }
+        .shot-img { width: 100%; height: auto; border-radius: 22px; box-shadow: 0 20px 50px rgba(20, 30, 50, 0.16); display: block; }
+        @media (max-width: 760px) {
+            .showcase { grid-template-columns: 1fr; gap: 24px; padding: 32px 0; }
+            .showcase.reverse .showcase-text { order: 0; }
+            .showcase-text h3 { font-size: 24px; }
+            .hero-visual { max-width: 260px; }
+        }
     </style>
 </head>
 <body>
@@ -569,14 +602,55 @@
             <div class="container">
                 <img src="icon.png" alt="Recmo App Icon" class="app-icon">
                 <h1>Recmo</h1>
-                <p class="tagline">From Recording to Remembering.</p>
-                <p class="subtitle">Record, transcribe, and summarize any audio on your Mac.<br><strong>Audio data stays on your device</strong> for complete privacy.</p>
+                <p class="tagline">Pour your meetings into your vault.</p>
+                <p class="subtitle">Capture any sound on your Mac. <strong>Real-time transcription, AI summary, custom Markdown</strong> — straight into your Obsidian vault.<br>From audio to knowledge base, hands-free.</p>
                 <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 24px 0;">
-                    <span style="background: var(--bg-secondary); padding: 8px 16px; border-radius: 20px; font-size: 14px;">🔒 Audio Stored Locally</span>
-                    <span style="background: var(--bg-secondary); padding: 8px 16px; border-radius: 20px; font-size: 14px;">🎯 Works with Any App</span>
-                    <span style="background: var(--bg-secondary); padding: 8px 16px; border-radius: 20px; font-size: 14px;">✈️ Offline Transcription</span>
+                    <span style="background: var(--bg-secondary); padding: 8px 16px; border-radius: 20px; font-size: 14px;">📁 Direct to Your Vault</span>
+                    <span style="background: var(--bg-secondary); padding: 8px 16px; border-radius: 20px; font-size: 14px;">🤖 AI-Ready by Design</span>
+                    <span style="background: var(--bg-secondary); padding: 8px 16px; border-radius: 20px; font-size: 14px;">🔒 Fully Local</span>
                 </div>
                 <a href="https://apps.apple.com/app/id6756238386" class="cta-button" target="_blank" rel="noopener noreferrer">Download on the App Store</a>
+                <div class="hero-visual"><img src="images/main-en.png" alt="Recmo menu bar"></div>
+            </div>
+        </section>
+
+        <section class="showcase-section">
+            <div class="container">
+                <h2>A calm, simple interface</h2>
+            </div>
+            <div class="container-wide">
+                <div class="showcase">
+                    <div class="showcase-text">
+                        <span class="showcase-kicker">LIVE TRANSCRIPT</span>
+                        <h3>Words appear as you speak.</h3>
+                        <p>Mic and speaker are split and transcribed live, right while you record — neatly organized by speaker.</p>
+                    </div>
+                    <img class="shot-img" src="images/recording-en.png" alt="Recmo live transcription while recording">
+                </div>
+                <div class="showcase reverse">
+                    <div class="showcase-text">
+                        <span class="showcase-kicker">LIBRARY</span>
+                        <h3>Keep recordings organized.</h3>
+                        <p>Manage by title and tags, with transcripts, summaries and re-processing all one click away.</p>
+                    </div>
+                    <img class="shot-img" src="images/history-en.png" alt="Recmo recordings library">
+                </div>
+                <div class="showcase">
+                    <div class="showcase-text">
+                        <span class="showcase-kicker">DETAILS</span>
+                        <h3>Titles and notes, any time.</h3>
+                        <p>Add tags and Markdown notes so the right recording is always easy to find — notes also feed your summary.</p>
+                    </div>
+                    <img class="shot-img" src="images/meta-en.png" alt="Recmo details and notes editor">
+                </div>
+                <div class="showcase reverse">
+                    <div class="showcase-text">
+                        <span class="showcase-kicker">SETTINGS</span>
+                        <h3>Your audio, your way.</h3>
+                        <p>From meetings to interviews — fine-tune recording quality and storage to fit how you work.</p>
+                    </div>
+                    <img class="shot-img" src="images/settings-en.png" alt="Recmo settings">
+                </div>
             </div>
         </section>
 
@@ -668,7 +742,7 @@
                     <div class="workflow">
                         <div class="workflow-step">Start Recording</div>
                         <span class="workflow-arrow">→</span>
-                        <div class="workflow-step">Auto Transcription</div>
+                        <div class="workflow-step">Real-time Transcription</div>
                         <span class="workflow-arrow">→</span>
                         <div class="workflow-step">Auto Summary</div>
                     </div>
@@ -692,7 +766,7 @@
 
                 <div class="feature-card">
                     <h3>Re-transcribe & Re-summarize Anytime</h3>
-                    <p>Want to try a different Whisper model? Changed your summary prompt? No problem. Re-process anytime from your recording history.</p>
+                    <p>Want to transcribe again? Changed your summary prompt? No problem. Re-process anytime from your recording history.</p>
                     <p class="highlight">As long as you have the audio, you can redo it as many times as you want.</p>
                 </div>
             </div>
@@ -716,7 +790,7 @@
                             <div class="arch-step">
                                 <div class="arch-step-icon">📝</div>
                                 <div class="arch-step-title">Transcription</div>
-                                <div class="arch-step-desc">Whisper.cpp<br>(Core ML)</div>
+                                <div class="arch-step-desc">Apple Speech<br>(on-device)</div>
                                 <div style="margin-top: 8px;"><span class="arch-badge arch-badge-local">Local</span></div>
                             </div>
                         </div>
@@ -767,15 +841,47 @@ Discussed design, testing, and schedule.
 
         <section>
             <div class="container">
-                <h2>Sync with Obsidian & Your Favorite Note Apps</h2>
-                <p style="text-align: center;">Set your output folders freely. Point to your Obsidian vault or any folder you prefer. Transcripts and summaries are saved automatically.</p>
-                <div class="code-block">
-<pre>Example:
-Audio: ~/Documents/Recmo/audio/
-Transcripts: ~/Obsidian/Meeting Notes/
-Summaries: ~/Obsidian/Meeting Notes/</pre>
+                <h2>Built for Obsidian and AI Workflows</h2>
+                <p style="text-align: center; max-width: 720px; margin: 0 auto 32px;">Recmo doesn't stop at recording. <strong>Markdown lands directly in your Obsidian vault — in a format your AI can read</strong>. From audio to knowledge base, hands-free.</p>
+
+                <div class="pricing-cards" style="margin: 32px 0;">
+                    <div class="pricing-card">
+                        <h3>📁 Direct to Your Vault</h3>
+                        <p style="text-align: left; color: var(--text-secondary);">Fully customizable output paths. Point to your Obsidian vault, Logseq journal, or any folder you like. The moment a meeting ends, Markdown is already where it belongs.</p>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>🎨 Custom Markdown Format</h3>
+                        <p style="text-align: left; color: var(--text-secondary);">Templates let you control tags, frontmatter, and heading structure. Daily Note append style, Templater-friendly, Smart Connections-optimized — fits your existing workflow exactly.</p>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>🤖 AI-Ready by Design</h3>
+                        <p style="text-align: left; color: var(--text-secondary);">Structured Markdown that flows straight into Claude, NotebookLM, ChatGPT, or your local LLM. Feed a folder of recordings to AI and let it summarize, synthesize, and connect — <strong>completely hands-free</strong>.</p>
+                    </div>
                 </div>
-                <p style="text-align: center;" class="highlight">Outputs in Markdown, ready to use as-is.</p>
+
+                <div class="code-block" style="text-align: center;">
+<pre style="text-align: left; display: inline-block;">🎙  Capture any sound on your Mac
+    ↓
+📝  On-device real-time transcription
+    ↓
+✨  AI summary with auto-tagging
+    ↓
+📁  Custom Markdown to your vault
+    ↓
+🤖  Claude / NotebookLM / ChatGPT reads it
+    ↓
+📚  Knowledge base built — hands-free</pre>
+                </div>
+
+                <p style="text-align: center; margin-top: 32px;">Plays well with: <strong>Obsidian / Logseq / Bear / Reflect / Apple Notes / NotebookLM / Claude / ChatGPT / Local LLMs</strong></p>
+
+                <div class="code-block" style="margin-top: 32px;">
+<pre>Example output paths:
+Audio:       ~/Documents/Recmo/audio/
+Transcripts: ~/Obsidian/Meeting Notes/
+Summaries:   ~/Obsidian/Meeting Notes/</pre>
+                </div>
+                <p style="text-align: center;" class="highlight">Markdown out, ready for Obsidian or any AI tool — no conversion needed.</p>
             </div>
         </section>
 
@@ -789,7 +895,7 @@ Summaries: ~/Obsidian/Meeting Notes/</pre>
                     </tr>
                     <tr>
                         <td>OS</td>
-                        <td>macOS 13 Ventura or later</td>
+                        <td>macOS 26 or later</td>
                     </tr>
                     <tr>
                         <td>Supported Apps</td>
@@ -822,35 +928,15 @@ Summaries: ~/Obsidian/Meeting Notes/</pre>
                     </div>
                     <div class="pricing-card pro">
                         <h3>Pro Monthly</h3>
-                        <div class="price">$9.99<span>/month</span></div>
+                        <div class="price"><span style="text-decoration: line-through; color: var(--text-secondary); font-size: 0.6em; font-weight: 600; margin-right: 8px;">$9.99</span>$3.99<span>/month</span></div>
                         <ul>
-                            <li>Recording limit: Up to 4 hours per session</li>
-                            <li>Recording history: Unlimited</li>
-                            <li>All features unlimited</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-card">
-                        <h3>Pro Yearly <small style="font-size: 0.6em; color: var(--text-secondary); font-weight: normal;">Coming Soon</small></h3>
-                        <div class="price">$99<span>/year</span></div>
-                        <ul>
-                            <li>$8.25/month equivalent (save ~17%)</li>
-                            <li>Recording limit: Up to 4 hours per session</li>
-                            <li>Recording history: Unlimited</li>
-                            <li>All features unlimited</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-card">
-                        <h3>Lifetime <small style="font-size: 0.6em; color: var(--text-secondary); font-weight: normal;">Coming Soon</small></h3>
-                        <div class="price">$169<span>/one-time</span></div>
-                        <ul>
-                            <li>Pay once, use forever</li>
                             <li>Recording limit: Up to 4 hours per session</li>
                             <li>Recording history: Unlimited</li>
                             <li>All features unlimited</li>
                         </ul>
                     </div>
                 </div>
-                <p style="text-align: center; color: var(--text-secondary);">To cancel or change your subscription, use the App Store<br>Yearly and Lifetime plans coming soon</p>
+                <p style="text-align: center; color: var(--text-secondary);">To cancel or change your subscription, use the App Store</p>
             </div>
         </section>
 
@@ -870,7 +956,7 @@ Summaries: ~/Obsidian/Meeting Notes/</pre>
 
                 <div class="faq-item">
                     <h4>Q. How accurate is the transcription?</h4>
-                    <p>A. We use OpenAI's Whisper model, which provides high accuracy for both English and Japanese. You can adjust model size in settings to balance accuracy and speed.</p>
+                    <p>A. We use Apple's on-device speech recognition to transcribe in real time while you record. Your microphone (you) and the system audio (the other party) are transcribed separately, color-coded by speaker. Everything runs entirely on your Mac, so your audio is never sent anywhere.</p>
                 </div>
 
                 <div class="faq-item">
@@ -897,8 +983,8 @@ Summaries: ~/Obsidian/Meeting Notes/</pre>
 
         <section class="hero">
             <div class="container">
-                <h2>Simplify Your Meetings with Recmo.</h2>
-                <p class="subtitle">Focus on the conversation. Let Recmo handle the rest.</p>
+                <h2>Pour your meetings into your vault.</h2>
+                <p class="subtitle">Focus on the conversation. Recmo transcribes, summarizes, and drops Markdown into your vault.</p>
                 <a href="https://apps.apple.com/app/id6756238386" class="cta-button" target="_blank" rel="noopener noreferrer">Download on the App Store</a>
             </div>
         </section>
@@ -911,7 +997,7 @@ Summaries: ~/Obsidian/Meeting Notes/</pre>
                 <a href="terms-en.html">Terms of Use</a>
                 <a href="mailto:support@recmo.me">Contact</a>
             </div>
-            <p>&copy; 2025 Recmo. All rights reserved.</p>
+            <p>&copy; 2026 Recmo. All rights reserved.</p>
             <p style="font-style: italic; margin-top: 8px;">Record + Memo = Recmo</p>
         </div>
     </footer>

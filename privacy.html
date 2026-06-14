@@ -17,14 +17,14 @@
     <link rel="alternate" hreflang="en" href="privacy-en.html">
     <style>
         :root {
-            --primary: #FF4757;
-            --primary-dark: #E8414F;
+            --primary: #fb4b52;
+            --primary-dark: #e23a41;
             --bg: #ffffff;
             --bg-secondary: #f5f5f7;
             --text: #1d1d1f;
             --text-secondary: #86868b;
             --border: #d2d2d7;
-            --accent: #FF4757;
+            --accent: #fb4b52;
             --warning: #FF9500;
             --navy: #1C1C2E;
         }
@@ -182,7 +182,7 @@
 
         /* Note */
         .note {
-            background: rgba(255, 71, 87, 0.1);
+            background: rgba(251, 75, 82, 0.1);
             border-left: 4px solid var(--primary);
             padding: 16px;
             border-radius: 0 8px 8px 0;
@@ -243,7 +243,7 @@
     <main>
         <div class="container">
             <h1>プライバシーポリシー</h1>
-            <p class="last-updated">最終更新日: 2025年12月</p>
+            <p class="last-updated">最終更新日: 2026年6月</p>
 
             <p>本プライバシーポリシーは、Recmo（以下「本アプリ」）における個人情報の取り扱いについて説明します。</p>
 
@@ -256,7 +256,7 @@
                 <li><strong>文字起こしデータ</strong>: 音声から生成されたテキスト</li>
                 <li><strong>要約データ</strong>: 文字起こしから生成された要約テキスト</li>
                 <li><strong>メモデータ</strong>: 録音中にユーザーが入力したメモ</li>
-                <li><strong>設定情報</strong>: アプリの設定（保存先フォルダ、Whisperモデルの選択など）</li>
+                <li><strong>設定情報</strong>: アプリの設定（保存先フォルダなど）</li>
             </ul>
 
             <h3>本アプリが収集しない情報</h3>
@@ -295,7 +295,7 @@
             <p>OpenAIのプライバシーポリシーについては、<a href="https://openai.com/privacy/" target="_blank" rel="noopener">OpenAIのプライバシーポリシー</a>をご確認ください。</p>
 
             <div class="note">
-                <strong>重要</strong>: 要約機能は任意です。APIキーを設定しない場合、文字起こしテキストがクラウドに送信されることはありません。録音と文字起こし機能は完全にオフラインで動作します。
+                <strong>重要</strong>: 要約機能は任意です。APIキーを設定しない場合、文字起こしテキストがクラウドに送信されることはありません。録音と文字起こしはお使いのMac上（オンデバイス）で処理され、音声がクラウドに送信されることはありません（音声認識の言語モデルを初めて使用する際にのみ、モデルの取得に通信が発生する場合があります）。
             </div>
 
             <h2>4. 画面収録権限について</h2>
@@ -316,7 +316,7 @@
             <h3>収集目的</h3>
             <p>画面収録権限で取得した音声データは、以下の目的でのみ使用されます：</p>
             <ul>
-                <li><strong>会議の文字起こし</strong>: デバイス上のWhisper AIモデルを使用して、音声をテキストに変換</li>
+                <li><strong>会議の文字起こし</strong>: Appleのオンデバイス音声認識を使用して、音声をテキストに変換</li>
                 <li><strong>会議の要約</strong>: 文字起こしテキストから要約を生成（オプション機能、OpenAI API使用）</li>
                 <li><strong>個人の記録</strong>: ユーザーが会議内容を振り返り、参照できるようにする</li>
             </ul>
@@ -383,7 +383,7 @@
                 <a href="index.html">ホーム</a>
                 <a href="terms.html">利用規約</a>
             </div>
-            <p>&copy; 2025 Recmo. All rights reserved.</p>
+            <p>&copy; 2026 Recmo. All rights reserved.</p>
         </div>
     </footer>
 </body>
